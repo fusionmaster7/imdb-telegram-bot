@@ -15,7 +15,7 @@ def scrape_movie(movie_name):
     response = get(movie_url)
     html_soup = BeautifulSoup(response.text, 'html.parser')
 
-    movieInfo = {'title': '', 'rating': '', 'duration': '', 'category': [], 'summary': '',
+    movieInfo = {'title': '', 'rating': '', 'duration': '', 'categories': [], 'summary': '',
                  'directors': [], 'writers': [], 'stars': [], 'casts': [], 'storyline': '', 'genres': []}
     ##### For Scraping Title ######
 
@@ -35,11 +35,11 @@ def scrape_movie(movie_name):
     ##### For Scraping Category ######
 
     categories_data = html_soup.find('div', class_='subtext').find_all('a')
-    categories.pop()
+    categories_data.pop()
     categories = []
-    for category in categories:
+    for category in categories_data:
         categories.append(category.text)
-    print(categories)
+
     movieInfo['categories'] = categories
 
     ##### For Scraping Summary ######
