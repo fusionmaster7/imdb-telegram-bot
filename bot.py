@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from scraper import scrape_movie
 
 
-bot_token = "1699446559:AAHtWnIRhKMN0EYLQnQ1fSWrjBxX--UEV5I"
+bot_token = "YOUR_BOT_TOKEN"
 
 keys = ["title", "rating", "duration"]
 
