@@ -1,12 +1,37 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, updater
 from scraper import scrape_movie
 
 
-bot_token = "YOUR_BOT_TOKEN"
+bot_token = "BOT_TOKEN_HERE"
 
 keys = ["title", "rating", "duration"]
 
+# ECHO BOT
 
+
+def start(update, context):
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text="Hi! I can help you search movies on IMDB.\nPlease enter /movie to get started")
+
+
+def message(update, context):
+    msg = update.message.text
+    update.message.reply_text(msg)
+
+
+def run_bot():
+    updater = Updater(bot_token)
+    dp = updater.dispatcher
+    start_command_handler = CommandHandler('start', start)
+    #message_handler = MessageHandler(Filters.text, message)
+    dp.add_handler(start_command_handler)
+    # dp.add_handler(message_handler)
+    updater.start_polling()
+    updater.idle()
+
+
+# TELEGRAM BOT
+"""
 def start(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Hi! I can help you search movies on IMDB.\nPlease enter /movie to get started")
@@ -41,6 +66,6 @@ def run_bot():
     dp.add_handler(movie_handler)
     updater.start_polling()
     updater.idle()
-
+"""
 
 run_bot()
