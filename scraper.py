@@ -94,4 +94,4 @@ def scrape_movie(movie_name):
     movieInfo['genres'] = genres
 
     ########## FINAL RESULT ###########
-    return movieInfo
+    print(movieInfo)
